@@ -22,6 +22,7 @@ export default function Form() {
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setFirstName(e.target.value)}
         />
+        {firstName.length < 1 ? <p>First Name is required</p> : null}
         <label htmlFor="lName" className="text-lg my-1 font-bold">
           Last name
         </label>
