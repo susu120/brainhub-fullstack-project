@@ -46,9 +46,15 @@ export default function Form() {
         <DatePicker
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           selected={eventDate}
+          dateFormat="dd/MM/yyyy"
           onChange={(date) => setEventDate(date)}
         />
-        <SubmitEventButton />
+        <SubmitEventButton
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          eventDate={eventDate}
+        />
       </form>
     </div>
   );
