@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import Axios from "axios";
 
 export default function SubmitEventButton({
   firstName,
@@ -7,13 +7,24 @@ export default function SubmitEventButton({
   email,
   eventDate,
 }) {
+  const createEvent = () => {
+    Axios.post("http://localhost:3001/api/createEvent", {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      eventDate: eventDate,
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const submitEvent = (e) => {
     e.preventDefault();
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
-    console.log(eventDate);
+    createEvent();
   };
+
   return (
     <div className="flex items-center justify-center">
       <button
