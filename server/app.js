@@ -36,7 +36,7 @@ app.post("/api/createEvent", async (req, res) => {
       eventDate: result.eventDate,
     });
 
-    console.log("User created successfull", createEvent);
+    console.log("Event created successfull", createEvent);
     await createEvent.save();
     res.sendStatus(200);
   } catch (err) {
