@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-import SubmitEventButton from "./SubmitEventButton";
+import createEvent from "../api/createEvent";
 
 export default function Form() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
+
+  const newEvent = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    eventDate: eventDate,
+  };
+
+  const submitEvent = (e) => {
+    e.preventDefault();
+    //console.log(newEvent);
+    createEvent(newEvent);
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -22,7 +34,6 @@ export default function Form() {
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setFirstName(e.target.value)}
         />
-        {firstName.length < 1 ? <p>First Name is required</p> : null}
         <label htmlFor="lName" className="text-lg my-1 font-bold">
           Last name
         </label>
@@ -50,12 +61,14 @@ export default function Form() {
           dateFormat="dd/MM/yyyy"
           onChange={(date) => setEventDate(date)}
         />
-        <SubmitEventButton
-          firstName={firstName}
-          lastName={lastName}
-          email={email}
-          eventDate={eventDate}
-        />
+        <div className="flex items-center justify-center">
+          <button
+            onClick={submitEvent}
+            className="mt-6 px-8 py-1 bg-purple-600 rounded-lg text-white text-lg font-bold"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
