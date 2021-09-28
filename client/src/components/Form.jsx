@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import createEvent from "../api/createEvent";
-import { useForm } from "react-hook-form";
 import { eventSchema } from "../validation/EventValidation";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Form() {
   const [firstName, setFirstName] = useState("");
@@ -19,14 +17,17 @@ export default function Form() {
     eventDate: eventDate,
   };
 
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(eventSchema),
-  });
-
-  const submitEvent = (e) => {
+  const submitEvent = async (e) => {
     e.preventDefault();
-    //console.log(newEvent);
-    createEvent(newEvent);
+    try {
+      const isValid = await eventSchema.validate(newEvent, {
+        abortEarly: false,
+      });
+      console.log(isValid);
+      createEvent(newEvent);
+    } catch (err) {
+      console.log(err.errors);
+    }
   };
 
   return (
@@ -42,6 +43,7 @@ export default function Form() {
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setFirstName(e.target.value)}
         />
+        {firstName.length === 0 ? "First Name is required" : null}
         <label htmlFor="lName" className="text-lg my-1 font-bold">
           Last name
         </label>
@@ -52,6 +54,7 @@ export default function Form() {
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setLastName(e.target.value)}
         />
+        {lastName.length === 0 ? "Last Name is required" : null}
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Email
         </label>
@@ -65,14 +68,13 @@ export default function Form() {
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Event Date
         </label>
-        <label>
-          <DatePicker
-            className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            selected={eventDate}
-            dateFormat="dd/MM/yyyy"
-            onChange={(date) => setEventDate(date)}
-          />
-        </label>
+        <DatePicker
+          className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          selected={eventDate}
+          dateFormat="dd/MM/yyyy"
+          onChange={(date) => setEventDate(date)}
+        />
+        {eventDate === null ? "Event date is required" : null}
         <div className="flex items-center justify-center">
           <button
             onClick={submitEvent}
