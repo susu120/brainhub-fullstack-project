@@ -36,12 +36,16 @@ app.post("/api/createEvent", async (req, res) => {
       eventDate: result.eventDate,
     });
 
-    console.log("Event created successfull", createEvent);
     await createEvent.save();
-    res.sendStatus(200);
+    console.log("Event created successfull", createEvent);
+    res.sendStatus(201);
   } catch (err) {
-    console.log(err.details[0].message);
-    res.sendStatus(400);
+    console.log(err);
+    if (err instanceof Joi.ValidationError) {
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(500);
+    }
   }
 });
 
