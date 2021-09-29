@@ -29,6 +29,18 @@ export default function Form() {
       console.log(err.errors);
     }
   };
+  const input = (name, placeholder, setter) => {
+    return (
+      <input
+        type="text"
+        name={name}
+        data-testid="input"
+        placeholder={placeholder}
+        className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        onChange={(e) => setter(e.target.value)}
+      />
+    );
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -39,38 +51,20 @@ export default function Form() {
         <label htmlFor="fName" className="text-lg my-1 font-bold">
           First name
         </label>
-        <input
-          type="text"
-          name="firstName"
-          data-testid="input"
-          placeholder="Joe"
-          className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          onChange={(e) => setFirstName(e.target.value)}
-        />
+        {input("firstName", "Joe", setFirstName)}
         {firstName.length === 0 ? "First Name is required" : null}
+
         <label htmlFor="lName" className="text-lg my-1 font-bold">
           Last name
         </label>
-        <input
-          type="text"
-          name="lastName"
-          data-testid="input"
-          placeholder="Smith"
-          className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          onChange={(e) => setLastName(e.target.value)}
-        />
+        {input("lastName", "Smith", setLastName)}
         {lastName.length === 0 ? "Last Name is required" : null}
+
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Email
         </label>
-        <input
-          type="text"
-          name="email"
-          data-testid="input"
-          placeholder="example@example.com"
-          className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        {input("email", "test@test.com", setEmail)}
+
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Event Date
         </label>
@@ -82,6 +76,7 @@ export default function Form() {
             onChange={(date) => setEventDate(date)}
           />
         </div>
+
         {eventDate === null ? "Event date is required" : null}
         <div className="flex items-center justify-center">
           <button
