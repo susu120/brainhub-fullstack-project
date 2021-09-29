@@ -32,13 +32,17 @@ export default function Form() {
 
   return (
     <div className="flex items-center justify-center">
-      <form className="grid border-2 border-gray-400 shadow-lg my-8 p-5 rounded-lg">
+      <form
+        data-testid="form"
+        className="grid border-2 border-gray-400 shadow-lg my-8 p-5 rounded-lg"
+      >
         <label htmlFor="fName" className="text-lg my-1 font-bold">
           First name
         </label>
         <input
           type="text"
           name="firstName"
+          data-testid="input"
           placeholder="Joe"
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setFirstName(e.target.value)}
@@ -50,6 +54,7 @@ export default function Form() {
         <input
           type="text"
           name="lastName"
+          data-testid="input"
           placeholder="Smith"
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setLastName(e.target.value)}
@@ -61,6 +66,7 @@ export default function Form() {
         <input
           type="text"
           name="email"
+          data-testid="input"
           placeholder="example@example.com"
           className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={(e) => setEmail(e.target.value)}
@@ -68,15 +74,18 @@ export default function Form() {
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Event Date
         </label>
-        <DatePicker
-          className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          selected={eventDate}
-          dateFormat="dd/MM/yyyy"
-          onChange={(date) => setEventDate(date)}
-        />
+        <div data-testid="datePicker">
+          <DatePicker
+            className="text-center shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            selected={eventDate}
+            dateFormat="dd/MM/yyyy"
+            onChange={(date) => setEventDate(date)}
+          />
+        </div>
         {eventDate === null ? "Event date is required" : null}
         <div className="flex items-center justify-center">
           <button
+            data-testid="button"
             onClick={submitEvent}
             className="mt-6 px-8 py-1 bg-purple-600 rounded-lg text-white text-lg font-bold"
           >
