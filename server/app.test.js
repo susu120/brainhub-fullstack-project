@@ -9,7 +9,7 @@ describe("post /api/createEvent", () => {
       email: "example@example.com",
       eventDate: "dd/mm/YYYY",
     });
-    expect(response.statusCode).toBe(201);
+    expect(response.status).toBe(201);
   });
   describe("test with missing data", () => {});
 });

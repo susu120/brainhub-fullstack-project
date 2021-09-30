@@ -20,10 +20,9 @@ export default function Form() {
   const submitEvent = async (e) => {
     e.preventDefault();
     try {
-      const isValid = await eventSchema.validate(newEvent, {
+        await eventSchema.validate(newEvent, {
         abortEarly: false,
       });
-      console.log(isValid);
       createEvent(newEvent);
     } catch (err) {
       console.log(err.errors);
