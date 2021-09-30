@@ -14,6 +14,9 @@ After you cloned the repository open two terminals.
 ### First terminal :
 Please navigate to the client folder and run the following command:
 
+### `npm install`
+This will install all the dependencies needed in order to run this app.
+
 ### `npm start`
 This will run the client side of the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -21,6 +24,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Second terminal :
 Please navigate to the server folder and run the following command:
+
+### `npm install`
+This will install all the dependencies needed in order to run this app.
 
 ### `npm run dev`
 This will run the server side of the app in the development mode.
