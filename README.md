@@ -1,6 +1,6 @@
-# Brinhub Fullstack Project
+# Brainhub Fullstack Project
 
-This project was created for a job interview, below is a description of all the necessary things to run and test the application itself.
+This project was created for a job interview, below is a description of all the necessary things to install, run and test the application itself.
 
 ## Project structure
 
