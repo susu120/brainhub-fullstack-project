@@ -5,8 +5,8 @@ const MONGODB_URI =
   "mongodb+srv://Brainhub:BrainhubFullstackProject2021@test.b3oyu.mongodb.net/brainhub?retryWrites=true&w=majority";
 
 mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-module.exports = mongoose
+module.exports = mongoose;
