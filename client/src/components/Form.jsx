@@ -9,6 +9,7 @@ export default function Form() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
+  const emailRegex = /\S+@\S+\.\S+/;
 
   const newEvent = {
     firstName: firstName,
@@ -51,18 +52,19 @@ export default function Form() {
           First name
         </label>
         {input("firstName", "Joe", setFirstName)}
-        {firstName.length === 0 ? "First Name is required" : null}
+        {firstName.length === 0 ? <p className="text-red-600 text-center">First Name is required</p> : null}
 
         <label htmlFor="lName" className="text-lg my-1 font-bold">
           Last name
         </label>
         {input("lastName", "Smith", setLastName)}
-        {lastName.length === 0 ? "Last Name is required" : null}
+        {lastName.length === 0 ? <p className="text-red-600 text-center">Last Name is required</p> : null}
 
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Email
         </label>
         {input("email", "test@test.com", setEmail)}
+        {!emailRegex.test(email) ? <p className="text-red-600 text-center">Valid email is required</p> : null}
 
         <label htmlFor="email" className="text-lg my-1 font-bold">
           Event Date
@@ -76,7 +78,7 @@ export default function Form() {
           />
         </div>
 
-        {eventDate === null ? "Event date is required" : null}
+        {eventDate === null ? <p className="text-red-600 text-center">Event Date is required</p> : null}
         <div className="flex items-center justify-center">
           <button
             data-testid="button"

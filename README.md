@@ -35,7 +35,7 @@ The server will be localy hosted on port 3001.
 You should also receive a message in the terminal stating "Server is starting at port 3001"
 
 ## How to test the app ?
-The client and the server side share on command to test the app.
+The client and the server side share one command to test the app.
 You need to open a terminal window and navigate to the part you want to test and simply run the following command :
 
 ### `npm test`
