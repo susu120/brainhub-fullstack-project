@@ -7,5 +7,5 @@ export const eventSchema = yup.object().shape({
     .string()
     .email("Please enter a valid email")
     .required("Email is required"),
-  eventDate: yup.mixed().required("Event date is required"),
+  eventDate: yup.string().required("Event date is required"),
 });
