@@ -1,16 +1,21 @@
 import Axios from "axios";
 
-const createEvent = (newEvent) => {
-  Axios.post("http://localhost:3001/api/createEvent", {
-    firstName: newEvent.firstName,
-    lastName: newEvent.lastName,
-    email: newEvent.email,
-    eventDate: newEvent.eventDate,
-  })
-    .then((response) => {
-      console.log(response);
+const createEvent = async(newEvent) =>{
+
+  try{
+    const result = await Axios.post("http://localhost:3001/api/createEvent", {
+      firstName: newEvent.firstName,
+      lastName: newEvent.lastName,
+      email: newEvent.email,
+      eventDate: newEvent.eventDate,
     })
-    .catch((err) => console.log(err));
-};
+    console.log(result)
+    return result
+
+  }catch(err){
+    console.log(err)
+    return err
+  }
+}
 
 export default createEvent;

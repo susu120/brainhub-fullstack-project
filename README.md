@@ -41,4 +41,9 @@ You need to open a terminal window and navigate to the part you want to test and
 ### `npm test`
 Launches the test runner in the interactive watch mode.
 
+If you run the test on the server side an error will appear.
+"Jest has detected the following 1 open handle potentially keeping Jest from exiting"
+
+This is a bug with jest that hasn't been fixed yet, more one that on the official GitHub page from jest :
+https://github.com/facebook/jest/issues/11665
 
